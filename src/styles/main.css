@@ -1,0 +1,124 @@
+@import './code.css';
+@import './custom-block.css';
+@import './fonts.css';
+
+:root {
+	scroll-behavior: smooth;
+}
+
+.post__layout {
+	width: 100%;
+	& > * {
+		max-width: 40rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.wide {
+	max-width: max-content !important;
+}
+
+/* Two column layouts */
+/* FIX ME! Grid breaks margin collapsing! */
+.code-panel {
+	display: grid;
+	grid-template-columns: 1fr 2rem 1fr;
+	& > *:first-of-type {
+		grid-column: 1 / span 3;
+	}
+	& > *:last-of-type {
+		grid-column: 1 / span 3;
+	}
+}
+
+.two-col {
+	display: grid;
+	grid-template-columns: 1fr 2rem 1fr;
+	& > *:first-of-type {
+		grid-column: 1 / span 3;
+	}
+	& > *:last-of-type {
+		grid-column: 1 / span 3;
+	}
+}
+
+@screen xl {
+	.post__layout {
+		width: 100%;
+		& > * {
+			max-width: 40rem;
+		}
+	}
+
+	.wide {
+		max-width: 76rem !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		width: max-content !important;
+	}
+
+	/* FIX ME! Grid breaks margin collapsing! */
+	.code-panel {
+		display: grid;
+		grid-template-columns: 1fr 2rem auto;
+		& > *:first-of-type {
+			grid-column: 1;
+		}
+		& > *:last-of-type {
+			grid-column: 3;
+		}
+	}
+
+	.two-col {
+		display: grid;
+		grid-template-columns: 1fr 2rem 1fr;
+		& > *:first-of-type {
+			grid-column: 1;
+		}
+		& > *:last-of-type {
+			grid-column: 3;
+		}
+	}
+}
+
+/* Scroll bar */
+html {
+	--scrollbar: theme('colors.gray.900');
+	--thumb: theme('colors.gray.700');
+}
+
+body::-webkit-scrollbar {
+	width: 11px;
+}
+
+body {
+	scrollbar-width: thin;
+	scrollbar-color: var(--thumb) var(--scrollbar);
+}
+
+body::-webkit-scrollbar-track {
+	background: var(--scrollbar);
+}
+
+body::-webkit-scrollbar-corner {
+	background: var(--scrollbar);
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: var(--thumb);
+	border-radius: 6px;
+	border: 3px solid var(--scrollbar);
+}
+
+/* Markdown task lists */
+
+.task-list-item {
+	display: flex !important;
+	align-items: center !important;
+}
+
+.task-list-item-checkbox {
+	margin: 0 0.75rem 0 0 !important;
+	@apply bg-gray-800 border-gray-600 text-pink-600;
+}

@@ -1,0 +1,7 @@
+/* Neutra Text Bold - JS Logo */
+
+@font-face {
+	font-family: 'Neutra Text';
+	font-weight: bold;
+	src: url('../assets/NeutraText-Bold.otf') format('opentype');
+}
