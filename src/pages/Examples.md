@@ -16,7 +16,7 @@ Here's what a regular `h1` looks like instead:
 
 Since we're heavily relying on the [Tailwind CSS Typography plugin](https://github.com/tailwindlabs/tailwindcss-typography) I'm going to use their example here.
 
-Before that, here's a <span class="highlight">fun little class provided in the template that will highlight text, and the highlight increases</span> as you hover it. This class is defined in the `src/styles/main.css` file.
+Before that, here's a <span class="highlight">fun little class provided in the template that will highlight text, and the highlight grows</span> as you hover it. This class is defined in the `src/styles/main.css` file.
 
 <p className="lead">
   Until now, trying to style an article, document, or blog post with Tailwind has been a tedious
@@ -262,11 +262,11 @@ export default {
 </script>
 ```
 
-If the block is too small for the code to be fully visible, invisible horizontal scrollbar is added, and the text on the sides is faded out as an indicator.
+If the block is too small for the code to be fully visible, an invisible horizontal scrollbar is added, and the text on the sides is faded out as an indicator.
 
 ### Line numbers
 
-We can add line numbers to a code block just by adding `ln` after the language name. e.g. `js ln`
+We can add line numbers to a code block just by adding `ln` after the language name, e.g. `js ln`
 
 ```js ln
 const date1 = new Date(2012, 11, 20, 3, 0, 0);
@@ -284,7 +284,7 @@ array1.toLocaleString('fr', { style: 'currency', currency: 'EUR' });
 
 ### Highlight lines
 
-In the same style we can add highlighted lines, by providing a list of line numbers separated by commas inside of curly braces e.g. `js ln {3,5}`
+In the same style, we can add highlighted lines by providing a list of line numbers separated by commas inside of curly braces, e.g. `js ln {3,5}`
 
 ```js ln {3,5}
 const date1 = new Date(2012, 11, 20, 3, 0, 0);
@@ -391,7 +391,7 @@ Of course we can also just wrap the content with HTML elements ourselves.
 
 ## Read more
 
-The More component let's you hide text until a user clicks on a button to show it. This is useful if you want to include additional information in a tip or a note, but don't want to to be overly long, in case the reader isn't interested.
+The More component lets you hide text until a user clicks on a button to show it. This is useful if you want to include additional information in a tip or a note, but don't want to to be overly long, in case the reader isn't interested.
 
 ::: more
 This is a simple more component
@@ -410,7 +410,7 @@ But clearly you were interested, since you clicked read more.
 
 The Slides component lets you create a "slide show" presentation with a few simple steps.
 
-You create can use custom containers for this, or add the `<Slides>` component yourself.
+You can use custom containers for this, or use the `<Slides>` component yourself.
 
 Every element inside with the class `slide` will be a slide.
 
@@ -420,7 +420,7 @@ Every element inside with the class `slide` will be a slide.
 This is a simple example of a slide or "slide show".
 :::
 ::: tag div slide
-Each slide has it's own content,
+Each slide has its own content,
 :::
 ::: tag div slide
 When you're on the last slide, you can't go forward anymore.
@@ -433,7 +433,7 @@ When you're on the last slide, you can't go forward anymore.
 This is a simple example of a slide or "slide show".
 :::
 ::: tag div slide
-Each slide has it's own content,
+Each slide has its own content,
 :::
 ::: tag div slide
 When you're on the last slide, you can't go forward anymore.
@@ -446,10 +446,10 @@ Let's look at some examples of different types of layouts. These are all just cl
 
 ### Wide
 
-Sometimes we want to break out of the narrow content area. For this we have the class `wide`. Now if you have content that needs to go beyond the regular width, you'll see this:
+Sometimes we want to break out of the narrow content area. For this we have the class `wide`. Now, if you have content that needs to go beyond the regular width, you'll see this:
 
 <div class="wide aside">
-This is a div with the class 'wide' and 'aside', but the content wants to be much wider then the regular width of the content area. But it does have a cap, so eventually the content will wrap.
+This is a div with the class 'wide' and 'aside', but the content wants to be much wider than the regular width of the content area. But it does have a cap, so eventually the content will wrap.
 </div>
 
 ### Two columns
@@ -622,7 +622,7 @@ WebAssembly.instantiateStreaming(fetch('simple.wasm'), importObj).then(obj => {
 
 I've added a few Vue components in the `src/components/examples` directory of some "news articles". These can be used here without importing them, thanks to the [Vite Plugin Components](https://github.com/antfu/vite-plugin-components), which auto imports components for us from the `src/components` directory.
 
-We can simple use the component like this:
+We can use the component like this:
 
 ```
 <ComponentBasics />
@@ -637,6 +637,6 @@ or with a markdown container
 
 <ComponentBasics />
 
-Try switching the HTML tag to the custom container and you'll see that nothing changes.
+Try switching the HTML tag to the custom container, and you'll see that nothing changes.
 
-This is all the examples, hopefully they're enough to get you started!
+This is all the examples. Hopefully they're enough to get you started!

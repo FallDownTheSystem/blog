@@ -3,7 +3,7 @@
 </p>
 
 <p align='center'>
-An opinionated static site generator template - built with Vue 3 and Vite.
+An opinionated blog starter template - statically generated with Vite and Vue 3.
 </p>
 
 <p align='center'>
@@ -12,7 +12,7 @@ An opinionated static site generator template - built with Vue 3 and Vite.
 
 ## Features
 
-- ⚡ Built with [Vue 3](https://github.com/vuejs/vue-next), [Vite 2](https://github.com/vitejs/vite)
+- ⚡ Built with [Vue 3](https://github.com/vuejs/vue-next) and [Vite 2](https://github.com/vitejs/vite)
 
 - 📑 Automatic routes based on [pages](https://github.com/hannoeru/vite-plugin-pages) and [layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
 
@@ -34,6 +34,8 @@ An opinionated static site generator template - built with Vue 3 and Vite.
 
 ## Documentation
 
+To get started ['Use this template'](https://github.com/FallDownTheSystem/blog/generate) or fork the repository if you want to keep track of the updates on this repo.
+
 Check out the live sample on [Netlify](https://static-blog-template.netlify.app/) or [GitHub Pages](https://falldownthesystem.github.io/blog/) for
 
 - More information about the architecture
@@ -46,7 +48,7 @@ Check out the live sample on [Netlify](https://static-blog-template.netlify.app/
 
 `npm run dev` to start a development server (with Vite).
 
-`npm run build` to build a production ready site, with server side generated pages.
+`npm run build` to build a production-ready site, with server-side generated pages.
 
 `npm run serve` to run the built site locally.
 
