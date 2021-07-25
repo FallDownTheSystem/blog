@@ -7,7 +7,7 @@ An opinionated static site generator template - built with Vue 3 and Vite.
 </p>
 
 <p align='center'>
-<a href="https://falldownthesystem.github.io/blog/">Live Demo</a>
+  <a href="https://falldownthesystem.github.io/blog/">Live Demo</a>
 </p>
 
 ## Features
@@ -50,7 +50,7 @@ Check out the live sample on [Netlify](https://static-blog-template.netlify.app/
 
 `npm run serve` to run the built site locally.
 
-The choice is package manager is completely optional, [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) can also be used instead of npm.
+The choice is package manager is optional, [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) can also be used instead of npm.
 
 For development, the following [VS Code](https://code.visualstudio.com/) extensions are recommended, but optional:
 
