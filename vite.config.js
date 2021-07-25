@@ -37,7 +37,7 @@ export default async ({ command, mode }) => {
 			}
 		},
 		// Change this depending on your public path, default is '/'
-		base: '/blog/',
+		base: '/',
 		// Load scripts async and minify index for for faster initial load
 		ssgOptions: {
 			script: 'async',
