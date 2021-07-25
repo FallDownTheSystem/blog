@@ -18,17 +18,19 @@ An opinionated static site generator template - built with Vue 3 and Vite.
 
 - 📦 Auto import [components](https://github.com/antfu/vite-plugin-components) and [icons](https://github.com/antfu/vite-plugin-icons)
 
-- 📃 Use [Markdown](https://github.com/antfu/vite-plugin-md) and Vue mixed together
+- 📃 Use [markdown](https://github.com/antfu/vite-plugin-md) and Vue mixed together
 
 - 🖋 Code syntax highlighting with [Shiki](https://shiki.matsu.io)
 
-- 🎨 Styled with [Tailwind CSS](https://github.com/windicss/windicss) - next generation utility-first CSS framework
+- 🎨 Styled with [Tailwind CSS](https://github.com/windicss/windicss)
 
 - 💻 Pre-rendering pages with [Vite SSG](https://github.com/antfu/vite-ssg)
 
 - 📱 Installable with Offline support - [PWA](https://github.com/antfu/vite-plugin-pwa)
 
 - ☁️ Pre-configured Deployment scripts for GitHub Pages and Netlify
+
+- 🕶 Dark theme support
 
 ## Documentation
 
