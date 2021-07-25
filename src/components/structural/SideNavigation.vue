@@ -130,7 +130,7 @@
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
-import { useElementVisibility } from '@vueuse/core';
+import { useElementVisibility, useTimeout, useDebounceFn } from '@vueuse/core';
 import sortBy from 'lodash/sortBy';
 import store from '../../store';
 
@@ -171,25 +171,29 @@ const isVisible = function (ele, container) {
 	return top <= containerRect.top ? containerRect.top - top <= height : bottom - containerRect.bottom <= height;
 };
 
-onMounted(() => {
-	document.addEventListener('scroll', function (e) {
-		for (const heading of headingRef.value) {
-			// Set as current when the position is a little above the middle of the screen
-			if (heading.pos < window.scrollY + window.innerHeight / 2.1) {
-				current.value = heading.hash;
-			} else {
-				break;
-			}
+const debounceScroll = useDebounceFn(() => {
+	for (const heading of headingRef.value) {
+		// Set as current when the position is a little above the middle of the screen
+		if (heading.pos < window.scrollY + window.innerHeight / 2.1) {
+			current.value = heading.hash;
+		} else {
+			break;
 		}
+	}
 
-		// Add automatic scrolling to side nav (useful when the side nav is so long it becomes scrollable)
-		const targetIsVisible = isVisible(currentStep.value, scrollTarget.value);
-		if (!targetIsVisible) {
-			if (typeof currentStep?.value?.scrollIntoView === 'function') {
+	// Add automatic scrolling to side nav (useful when the side nav is so long it becomes scrollable)
+	const targetIsVisible = isVisible(currentStep.value, scrollTarget.value);
+	if (!targetIsVisible) {
+		if (typeof currentStep?.value?.scrollIntoView === 'function') {
+			nextTick(() => {
 				currentStep.value.scrollIntoView({ block: 'center', behavior: 'smooth' });
-			}
+			});
 		}
-	});
+	}
+}, 10);
+
+onMounted(() => {
+	document.addEventListener('scroll', debounceScroll);
 });
 </script>
 
