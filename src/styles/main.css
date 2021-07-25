@@ -1,29 +1,69 @@
-@import './code.css';
-@import './custom-block.css';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @import './fonts.css';
+@import './code.css';
+@import './markdown.css';
 
 :root {
+	/* Remove this if you don't want the smooth scrolling effect */
 	scroll-behavior: smooth;
+	/* Variables */
+	--column: 44rem;
+	--gap: 2rem;
+	--column-with-gap: calc(var(--column) + var(--gap) + var(--gap));
+	--max-column: 72rem;
+	--max-column-with-gap: calc(var(--max-column) + var(--gap) + var(--gap));
 }
 
+/* Applies a highlight behind text that grows to the height of the text on hover */
+.highlight {
+	text-decoration: none;
+	background-position-y: 30%;
+	background-image: linear-gradient(transparent 50%, theme('colors.primary.300') 50%);
+	transition: background 100ms ease;
+	background-size: 2px;
+	background-size: auto 200%;
+}
+
+.dark .highlight {
+	background-image: linear-gradient(transparent 50%, theme('colors.primary.700') 50%);
+}
+
+.highlight:hover {
+	background-position-y: 100%;
+}
+
+/* Structural classes */
 .post__layout {
 	width: 100%;
 	& > * {
-		max-width: 40rem;
+		max-width: var(--column);
 		margin-left: auto;
 		margin-right: auto;
 	}
 }
 
+@screen 2xl {
+	.post__layout {
+		width: 100%;
+		& > * {
+			max-width: var(--column);
+		}
+	}
+}
+
+.dark .wide,
 .wide {
-	max-width: max-content !important;
+	/* Clamping max width so that the content never touches the side bar, which is about 16rem */
+	/* The 36rem is 2x16 + 2x2rem for gap */
+	@apply max-w-[clamp(var(--column-with-gap),var(--max-column-with-gap),calc(100vw-36rem))] mx-auto w-full xl:w-max xl:min-w-[var(--column-with-gap)] !important;
 }
 
 /* Two column layouts */
-/* FIX ME! Grid breaks margin collapsing! */
 .code-panel {
 	display: grid;
-	grid-template-columns: 1fr 2rem 1fr;
+	grid-template-columns: 1fr var(--gap) 1fr;
 	& > *:first-of-type {
 		grid-column: 1 / span 3;
 	}
@@ -34,7 +74,7 @@
 
 .two-col {
 	display: grid;
-	grid-template-columns: 1fr 2rem 1fr;
+	grid-template-columns: 1fr var(--gap) 1fr;
 	& > *:first-of-type {
 		grid-column: 1 / span 3;
 	}
@@ -43,25 +83,10 @@
 	}
 }
 
-@screen xl {
-	.post__layout {
-		width: 100%;
-		& > * {
-			max-width: 40rem;
-		}
-	}
-
-	.wide {
-		max-width: 76rem !important;
-		margin-left: auto !important;
-		margin-right: auto !important;
-		width: max-content !important;
-	}
-
-	/* FIX ME! Grid breaks margin collapsing! */
+@screen 2xl {
 	.code-panel {
 		display: grid;
-		grid-template-columns: 1fr 2rem auto;
+		grid-template-columns: 1fr var(--gap) auto;
 		& > *:first-of-type {
 			grid-column: 1;
 		}
@@ -72,7 +97,7 @@
 
 	.two-col {
 		display: grid;
-		grid-template-columns: 1fr 2rem 1fr;
+		grid-template-columns: 1fr var(--gap) 1fr;
 		& > *:first-of-type {
 			grid-column: 1;
 		}
@@ -83,7 +108,22 @@
 }
 
 /* Scroll bar */
+.scroll-hide {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+	overflow-x: scroll;
+}
+
+.scroll-hide::-webkit-scrollbar {
+	display: none;
+}
+
 html {
+	--scrollbar: theme('colors.white');
+	--thumb: theme('colors.gray.400');
+}
+
+html.dark {
 	--scrollbar: theme('colors.gray.900');
 	--thumb: theme('colors.gray.700');
 }
@@ -111,14 +151,10 @@ body::-webkit-scrollbar-thumb {
 	border: 3px solid var(--scrollbar);
 }
 
-/* Markdown task lists */
-
-.task-list-item {
-	display: flex !important;
-	align-items: center !important;
+/* NProgress */
+#nprogress {
+	pointer-events: none;
 }
-
-.task-list-item-checkbox {
-	margin: 0 0.75rem 0 0 !important;
-	@apply bg-gray-800 border-gray-600 text-pink-600;
+#nprogress .bar {
+	@apply fixed bg-primary-500 w-full h-[2px] inset-0 z-50;
 }

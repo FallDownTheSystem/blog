@@ -2,7 +2,11 @@
 	<div>
 		<p class="text-2xl font-medium !-mb-2">{{ title }}</p>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<button type="button" class="bg-gray-700 px-4 py-1 rounded mt-2 hover:bg-gray-600" @click="saveArticle">
+		<button
+			type="button"
+			class="bg-gray-200 dark:bg-gray-700 px-4 py-1 rounded mt-2 hover:bg-gray-300 dark:hover:bg-gray-600"
+			@click="saveArticle"
+		>
 			<span>{{ savedText }} <span class="text-red-500">♥</span></span>
 		</button>
 	</div>

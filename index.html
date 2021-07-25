@@ -2,17 +2,31 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<script>
+			if (
+				(!('vueuse-color-scheme' in localStorage) || localStorage.getItem('vueuse-color-scheme') === 'auto') &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches
+			) {
+				document.documentElement.classList.add('dark');
+			}
+			if (localStorage.getItem('vueuse-color-scheme') === 'dark') {
+				document.documentElement.classList.add('dark');
+			} else if (localStorage.getItem('vueuse-color-scheme') === 'light') {
+				document.documentElement.classList.remove('dark');
+			}
+		</script>
+
 		<link rel="icon" href="/favicon.svg" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			crossorigin="anonymous"
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
 			rel="stylesheet"
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Modern JavaScript</title>
+		<title>Blog</title>
 	</head>
-	<body class="bg-gray-900">
+	<body class="bg-white dark:bg-gray-900 selection:bg-primary-600 selection:text-white">
 		<div id="app"></div>
 		<script type="module" src="/src/main.js"></script>
 	</body>
