@@ -1,168 +1,122 @@
-const colors = require('tailwindcss/colors');
 const defaultTheme = require('tailwindcss/defaultTheme');
+const plugin = require('tailwindcss/plugin');
+// Loading all the tailwind colors, rather than just the defaults
+let colors = require('tailwindcss/colors');
+
+// Depricated but still included. Deleted to get rid of the warning from Tailwind.
+delete colors.lightBlue;
+
+// Overriding the default gray with custom colors
+colors = {
+	...colors,
+	gray: {
+		50: 'hsl(210, 28%, 98%)',
+		100: 'hsl(220, 22%, 96%)',
+		200: 'hsl(220, 17%, 91%)',
+		300: 'hsl(216, 15%, 84%)',
+		400: 'hsl(218, 11%, 65%)',
+		500: 'hsl(220, 8%, 46%)',
+		600: 'hsl(215, 9%, 34%)',
+		700: 'hsl(217, 11%, 25%)',
+		800: 'hsl(215, 11%, 17%)',
+		900: 'hsl(218, 12%, 11%)'
+	}
+};
+
+// Methods taken from tailwind typography plugin
 const rem = px => `${round(px / 16)}rem`;
 const em = (px, base) => `${round(px / base)}em`;
-const round = num =>
-	num
+const round = n =>
+	n
 		.toFixed(7)
 		.replace(/(\.[0-9]+?)0+$/, '$1')
 		.replace(/\.0$/, '');
 
 module.exports = {
-	purge: ['./index.html', './vite.config.js', './src/**/*.{js,vue,md}'],
-	darkMode: false, // or 'media' or 'class'
+	purge: {
+		content: ['./index.html', './vite.config.js', './src/**/*.{js,vue,md}'],
+		safelist: []
+	},
+	darkMode: 'class', // or 'media' or 'class'
 	mode: 'jit',
 	theme: {
 		extend: {
 			colors: {
-				js: '#f7df1e',
 				...colors,
-				gray: {
-					50: 'hsl(210, 28%, 98%)',
-					100: 'hsl(220, 22%, 96%)',
-					200: 'hsl(220, 17%, 91%)',
-					300: 'hsl(216, 15%, 84%)',
-					400: 'hsl(218, 11%, 65%)',
-					500: 'hsl(220, 8%, 46%)',
-					600: 'hsl(215, 9%, 34%)',
-					700: 'hsl(217, 11%, 25%)',
-					800: 'hsl(215, 11%, 17%)',
-					900: 'hsl(218, 12%, 11%)'
-				}
+				primary: colors.purple,
+				// Background color of syntax highlighted code blocks
+				// Set these to the color of the theme you use, or a custom one
+				code: '#ffffff',
+				'code-dark': 'hsl(215, 11%, 14%)'
 			},
+			// Override the default 2xl breakpoint
+			// to better fit the blog width + side navigation
 			screens: {
-				full: '1820px'
+				'2xl': '1600px'
 			},
 			fontFamily: {
+				// https://fonts.google.com/specimen/Public+Sans
+				// Loaded in index.html
 				sans: ["'Public Sans'", ...defaultTheme.fontFamily.sans],
+				// Playfair Display is not suited for small text
+				// so replace this if you intend to use serif on body text or even regular sized headings
+				// https://fonts.google.com/specimen/Playfair+Display
+				// Loaded in index.html
 				serif: ["'Playfair Display'", ...defaultTheme.fontFamily.serif],
-				mono: ["'JetBrains Mono'", ...defaultTheme.fontFamily.mono],
-				display: ["'Neutra Text'"]
+				// https://github.com/microsoft/cascadia-code
+				mono: ["'Cascadia Code'", ...defaultTheme.fontFamily.mono]
 			},
+			// See https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js for default config
 			typography: theme => ({
 				DEFAULT: {
 					css: [
 						{
-							color: theme('colors.gray.200', defaultTheme.colors.gray[200]),
 							maxWidth: 'none',
-							'[class~="lead"]': {
-								color: theme('colors.gray.400', defaultTheme.colors.gray[400])
-							},
 							a: {
-								color: theme('colors.pink.600', defaultTheme.colors.pink[600]),
+								color: theme('colors.primary.500', defaultTheme.colors.indigo['500']),
 								textDecoration: 'none',
 								fontWeight: '500',
 								'&:hover': {
 									textDecoration: 'underline'
 								},
 								strong: {
-									color: theme('colors.pink.600', defaultTheme.colors.pink[600])
+									color: theme('colors.primary.500', defaultTheme.colors.indigo['500'])
 								}
 							},
-							strong: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
-								fontWeight: '600'
-							},
 							sub: {
-								lineHeight: '1.25',
-								color: theme('colors.gray.200', defaultTheme.colors.gray[200])
+								lineHeight: '1.25'
 							},
 							sup: {
-								lineHeight: '1.25',
-								color: theme('colors.gray.200', defaultTheme.colors.gray[200])
-							},
-							'ol[type="A"]': {
-								'--list-counter-style': 'upper-alpha'
-							},
-							'ol[type="a"]': {
-								'--list-counter-style': 'lower-alpha'
-							},
-							'ol[type="A" s]': {
-								'--list-counter-style': 'upper-alpha'
-							},
-							'ol[type="a" s]': {
-								'--list-counter-style': 'lower-alpha'
-							},
-							'ol[type="I"]': {
-								'--list-counter-style': 'upper-roman'
-							},
-							'ol[type="i"]': {
-								'--list-counter-style': 'lower-roman'
-							},
-							'ol[type="I" s]': {
-								'--list-counter-style': 'upper-roman'
-							},
-							'ol[type="i" s]': {
-								'--list-counter-style': 'lower-roman'
-							},
-							'ol[type="1"]': {
-								'--list-counter-style': 'decimal'
-							},
-							'ol > li': {
-								position: 'relative'
+								lineHeight: '1.25'
 							},
 							'ol > li::before': {
-								content: 'counter(list-item, var(--list-counter-style, decimal)) "."',
-								position: 'absolute',
-								fontWeight: '400',
-								color: 'hsla(0, 0%, 100%, 0.4)'
-							},
-							'ul > li': {
-								position: 'relative'
+								color: 'hsla(0, 0%, 0%, 0.25)'
 							},
 							'ul > li::before': {
-								content: '""',
-								position: 'absolute',
-								backgroundColor: 'hsla(0, 0%, 100%, 0.4)',
-								borderRadius: '50%'
-							},
-							hr: {
-								borderColor: theme('colors.gray.800', defaultTheme.colors.gray[800]),
-								borderTopWidth: 1
-							},
-							blockquote: {
-								fontWeight: '500',
-								fontStyle: 'italic',
-								color: theme('colors.gray.200', defaultTheme.colors.gray[200]),
-								borderLeftWidth: '0.25rem',
-								borderLeftColor: theme('colors.gray.700', defaultTheme.colors.gray[700]),
-								quotes: '"\\201C""\\201D""\\2018""\\2019"'
-							},
-							'blockquote p:first-of-type::before': {
-								content: 'open-quote'
-							},
-							'blockquote p:last-of-type::after': {
-								content: 'close-quote'
+								backgroundColor: 'hsla(0, 0%, 0%, 0.25)'
 							},
 							h1: {
-								color: theme('colors.white', defaultTheme.colors.white),
 								fontWeight: '600'
 							},
 							h2: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
 								fontWeight: '600'
 							},
 							h3: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
 								fontWeight: '600'
 							},
 							h4: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
 								fontWeight: '600'
-							},
-							'figure figcaption': {
-								color: theme('colors.gray.400', defaultTheme.colors.gray[400])
 							},
 							code: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
-								fontWeight: '600'
+								// Cascadia code is a fat font, so using a lower font weight
+								fontWeight: '350'
 							},
-							':not(pre)>code': {
+							':not(.shiki)>code': {
 								paddingTop: '0.125rem',
 								paddingBottom: '0.125rem',
 								paddingRight: '0.25rem',
 								paddingLeft: '0.25rem',
-								background: 'hsla(210, 80%, 80%, 0.075)',
+								background: 'hsla(0, 0%, 0%, 0.075)',
 								borderRadius: '0.2rem'
 							},
 							'code::before': {
@@ -172,55 +126,14 @@ module.exports = {
 								content: ''
 							},
 							'a code': {
-								color: theme('colors.pink.600', defaultTheme.colors.pink[600])
+								color: theme('colors.primary.500', defaultTheme.colors.indigo[500])
 							},
 							pre: {
-								color: theme('colors.gray.200', defaultTheme.colors.gray[200]),
-								backgroundColor: theme('colors.gray.800', defaultTheme.colors.gray[800]),
-								overflowX: 'auto'
+								backgroundColor: theme('colors.code', defaultTheme.colors.gray[200])
 							},
 							'pre code': {
-								backgroundColor: 'transparent',
-								borderWidth: '0',
-								borderRadius: '0',
-								padding: '0',
-								fontWeight: '400',
-								color: 'inherit',
-								fontSize: 'inherit',
-								fontFamily: 'inherit',
-								lineHeight: 'inherit'
-							},
-							'pre code::before': {
-								content: 'none'
-							},
-							'pre code::after': {
-								content: 'none'
-							},
-							table: {
-								width: '100%',
-								tableLayout: 'auto',
-								textAlign: 'left',
-								marginTop: em(32, 16),
-								marginBottom: em(32, 16)
-							},
-							thead: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
-								fontWeight: '600',
-								borderBottomWidth: '1px',
-								borderBottomColor: theme('colors.gray.700', defaultTheme.colors.gray[700])
-							},
-							'thead th': {
-								verticalAlign: 'bottom'
-							},
-							'tbody tr': {
-								borderBottomWidth: '1px',
-								borderBottomColor: theme('colors.gray.800', defaultTheme.colors.gray[800])
-							},
-							'tbody tr:last-child': {
-								borderBottomWidth: '0'
-							},
-							'tbody td': {
-								verticalAlign: 'top'
+								// Cascadia code is a fat font, so using a lower font weight
+								fontWeight: '350'
 							}
 						},
 						{
@@ -243,7 +156,6 @@ module.exports = {
 							},
 							h1: {
 								fontSize: em(48, 18),
-								marginTop: '0',
 								marginBottom: em(40, 48),
 								lineHeight: round(48 / 44)
 							},
@@ -275,10 +187,6 @@ module.exports = {
 							figure: {
 								marginTop: em(32, 18),
 								marginBottom: em(32, 18)
-							},
-							'figure > *': {
-								marginTop: '0',
-								marginBottom: '0'
 							},
 							'figure figcaption': {
 								fontSize: em(16, 18),
@@ -320,9 +228,6 @@ module.exports = {
 							'ol > li': {
 								paddingLeft: em(30, 18)
 							},
-							'ol > li::before': {
-								left: '0'
-							},
 							'ul > li': {
 								paddingLeft: em(30, 18)
 							},
@@ -356,18 +261,6 @@ module.exports = {
 								marginTop: em(56, 18),
 								marginBottom: em(56, 18)
 							},
-							'hr + *': {
-								marginTop: '0'
-							},
-							'h2 + *': {
-								marginTop: '0'
-							},
-							'h3 + *': {
-								marginTop: '0'
-							},
-							'h4 + *': {
-								marginTop: '0'
-							},
 							table: {
 								fontSize: em(16, 18),
 								lineHeight: round(24 / 16)
@@ -377,31 +270,88 @@ module.exports = {
 								paddingBottom: em(12, 16),
 								paddingLeft: em(12, 16)
 							},
-							'thead th:first-child': {
-								paddingLeft: '0'
-							},
-							'thead th:last-child': {
-								paddingRight: '0'
-							},
 							'tbody td': {
 								paddingTop: em(12, 16),
 								paddingRight: em(12, 16),
 								paddingBottom: em(12, 16),
 								paddingLeft: em(12, 16)
-							},
-							'tbody td:first-child': {
-								paddingLeft: '0'
-							},
-							'tbody td:last-child': {
-								paddingRight: '0'
 							}
-						},
+						}
+					]
+				},
+				dark: {
+					css: [
 						{
-							'> :first-child': {
-								marginTop: '0'
+							color: theme('colors.gray.200', defaultTheme.colors.gray[200]),
+							'[class~="lead"]': {
+								color: theme('colors.gray.400', defaultTheme.colors.gray[400])
 							},
-							'> :last-child': {
-								marginBottom: '0'
+							a: {
+								color: theme('colors.primary.500', defaultTheme.colors.indigo[500]),
+								strong: {
+									color: theme('colors.primary.500', defaultTheme.colors.indigo[500])
+								}
+							},
+							strong: {
+								color: theme('colors.gray.100', defaultTheme.colors.gray[100])
+							},
+							sub: {
+								color: theme('colors.gray.200', defaultTheme.colors.gray[200])
+							},
+							sup: {
+								color: theme('colors.gray.200', defaultTheme.colors.gray[200])
+							},
+							'ol > li::before': {
+								color: 'hsla(0, 0%, 100%, 0.4)'
+							},
+							'ul > li::before': {
+								backgroundColor: 'hsla(0, 0%, 100%, 0.4)'
+							},
+							hr: {
+								borderColor: theme('colors.gray.800', defaultTheme.colors.gray[800])
+							},
+							blockquote: {
+								color: theme('colors.gray.200', defaultTheme.colors.gray[200]),
+								borderLeftColor: theme('colors.gray.700', defaultTheme.colors.gray[700])
+							},
+							h1: {
+								color: theme('colors.white', defaultTheme.colors.white),
+								fontWeight: '600'
+							},
+							h2: {
+								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
+								fontWeight: '600'
+							},
+							h3: {
+								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
+								fontWeight: '600'
+							},
+							h4: {
+								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
+								fontWeight: '600'
+							},
+							'figure figcaption': {
+								color: theme('colors.gray.400', defaultTheme.colors.gray[400])
+							},
+							code: {
+								color: theme('colors.gray.100', defaultTheme.colors.gray[100])
+							},
+							':not(.shiki)>code': {
+								background: 'hsla(210, 80%, 80%, 0.075)'
+							},
+							'a code': {
+								color: theme('colors.primary.500', defaultTheme.colors.indigo[500])
+							},
+							pre: {
+								color: theme('colors.gray.200', defaultTheme.colors.gray[200]),
+								backgroundColor: theme('colors.code-dark', defaultTheme.colors.gray[800])
+							},
+							thead: {
+								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
+								borderBottomColor: theme('colors.gray.700', defaultTheme.colors.gray[700])
+							},
+							'tbody tr': {
+								borderBottomColor: theme('colors.gray.800', defaultTheme.colors.gray[800])
 							}
 						}
 					]
@@ -409,8 +359,30 @@ module.exports = {
 			})
 		}
 	},
+	// With Tailwind JIT all variants are enabled, but a plugin might need to explicitly enable variants still
 	variants: {
 		extend: {}
 	},
-	plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')]
+	plugins: [
+		// https://github.com/tailwindlabs/tailwindcss-typography
+		// Disabling the size modifiers
+		require('@tailwindcss/typography')({ modifiers: [] }),
+		//https://github.com/tailwindlabs/tailwindcss-forms
+		require('@tailwindcss/forms'),
+		// Adds a firefox variant, used for a custom background opacity in the header and side nav
+		// Because firefox doesn't support background filter blur yet.
+		plugin(function ({ addVariant, e, postcss }) {
+			addVariant('firefox', ({ container, separator }) => {
+				const isFirefoxRule = postcss.atRule({
+					name: '-moz-document',
+					params: 'url-prefix()'
+				});
+				isFirefoxRule.append(container.nodes);
+				container.append(isFirefoxRule);
+				isFirefoxRule.walkRules(rule => {
+					rule.selector = `.${e(`firefox${separator}${rule.selector.slice(1)}`)}`;
+				});
+			});
+		})
+	]
 };

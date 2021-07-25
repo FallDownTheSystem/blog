@@ -1,75 +1,82 @@
-# TODO
+<p align='center'>
+  <img src='https://falldownthesystem.github.io/blog/pwa-512x512.png' alt='Blog Template Logo' width='256'/>
+</p>
 
-## Day 1
+<p align='center'>
+An opinionated static site generator template - built with Vue 3 and Vite.
+</p>
 
-- Figure out of component auto import can still have IDE support
-- Create a repo
-- Add vue global import
-  - Use script setup everywhere?
-- Add SSR
-- Fix layout
-  - Remove ultra wide screen size
-  - Figure out if we can use grid and flow layout together somehow
-- PWA
+<p align='center'>
+<a href="https://falldownthesystem.github.io/blog/">Live Demo</a>
+</p>
 
-## Day 2
+## Features
 
-- Upgrade syntax highlighting to use Shiki
-- Change markdown container to just be a box thingy, with support for the types (icon, color, heading, etc)
-  - Figure out a different syntax for custom components, read-more, etc
-- Mobily friendly
-  - Single column always
-  - Code blocks should hide x overflow and have "shadow" to indicate more content
-  - Figure out side navigation
+- ⚡ Built with [Vue 3](https://github.com/vuejs/vue-next), [Vite 2](https://github.com/vitejs/vite)
 
-## Day 3
+- 📑 Automatic routes based on [pages](https://github.com/hannoeru/vite-plugin-pages) and [layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
 
-- Light theme
-  - Change typgraphy colors back to default and add a dark key
-  - Add support everywhere else
-  - Use system preference, enable class override?
-    - Save override to localStorage
-    - Button in the header
+- 📦 Auto import [components](https://github.com/antfu/vite-plugin-components) and [icons](https://github.com/antfu/vite-plugin-icons)
 
-## Day 4
+- 📃 Use [Markdown](https://github.com/antfu/vite-plugin-md) and Vue mixed together
 
-- Add dates to post metadata, sort by date (ISO format?)
-- Move post list to a component, so it's easier to customize
-- Add top navigation
-  - Scroll into view, when scrolling up even a little
-  - Sticky period
-  - Fancy blur stuff? :))
-  - Link to home, to github, to all posts, customizable
-- Add primary color to tailwind config
-- Variable fonts from Google, local installed (Josh's tutorial)
-- Tailwind scrollbar plugin?
-  - Other tailwind plugins?
+- 🖋 Code syntax highlighting with [Shiki](https://shiki.matsu.io)
 
-## Day 5
+- 🎨 Styled with [Tailwind CSS](https://github.com/windicss/windicss) - next generation utility-first CSS framework
 
-- Add polished animations (see Stripe)
-- Better animation support?
+- 💻 Pre-rendering pages with [Vite SSG](https://github.com/antfu/vite-ssg)
 
-## Day 6
+- 📱 Installable with Offline support - [PWA](https://github.com/antfu/vite-plugin-pwa)
 
-- Add documentation
-  - Read me doc
-    - How to build
-  - How to doc
-    - Change colors, fonts, etc
-    - Add new pages, change meta data
-    - Publish to github pages, netlify, etc
-  - Architecture doc
-- Lighthouse score
+- ☁️ Pre-configured Deployment scripts for GitHub Pages and Netlify
 
-## Day 7
+## Documentation
 
-- Copy stuff from slidev?
-  - Monaco editor
-  - LaTex
-  - Diagrams
-  - vite-plugin-remote-assets
-- SEO
-  - Tags
-  - Vue meta
-  - All posts search?
+Check out the live sample on [Netlify](https://static-blog-template.netlify.app/) or [GitHub Pages](https://falldownthesystem.github.io/blog/) for
+
+- More information about the architecture
+- A getting started guide
+- Examples page
+
+## Developers
+
+`npm install` to install the dependencies.
+
+`npm run dev` to start a development server (with Vite).
+
+`npm run build` to build a production ready site, with server side generated pages.
+
+`npm run serve` to run the built site locally.
+
+The choice is package manager is completely optional, [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) can also be used instead of npm.
+
+For development, the following [VS Code](https://code.visualstudio.com/) extensions are recommended, but optional:
+
+- [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) for Vue 3 language support
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) for Tailwind CSS classes auto-completion
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for formatting
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) for linting
+- [Iconify IntelliSense](https://marketplace.visualstudio.com/items?itemName=antfu.iconify) for SVG icon component auto-completion
+- [PostCSS Language Support](https://marketplace.visualstudio.com/items?itemName=csstools.postcss) for PostCSS syntax support
+
+## Future ideas
+
+- Add a fuzzy search and tag search
+  - Tags already exist on route object (parsed from meta keywords)
+- Add KaTex support
+- Add Mermaid Diagrams support
+- Add vite-plugin-remote-assets
+- Better animation support
+  - useMotion and useGestures
+
+## Credits
+
+- [Yuxi (Evan) You](https://evanyou.me/) for [Vite](https://vitejs.dev/) and [Vitepress](https://github.com/vuejs/vitepress), some of the markdown-it plugins are based on those found in Vitepress.
+- [Anthony Fu](https://antfu.me/) for [Vitesse](https://github.com/antfu/vitesse) and [Slidev](https://sli.dev/), the template relies on a ton of the plugins found in Vitesse, and the whole idea for creating this site was from seeing Slidev.
+- Everyone else whose libraries are used in this project ❤
+
+## Known issues
+
+- Can't use a later version of `@vueuse/head` than `0.5.1` until Vite SSG updates their dependency.
+- Shiki version is pinned to `0.9.3` since `0.9.4` broke Vue syntax highlighting. Not fixed in `0.9.5` yet.
+- group-hover animation styles aren't working in TailwindCSS version `2.2.7`. The code is there for some animations, but they won't work until the issue is fixed and the dependency updated.
