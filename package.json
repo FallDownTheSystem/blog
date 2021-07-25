@@ -39,7 +39,7 @@
 		"markdown-it-task-lists": "^2.1.1",
 		"postcss": "^8.3.6",
 		"prettier": "^2.3.2",
-		"shiki": "0.9.3",
+		"shiki": "0.9.5",
 		"tailwindcss": "^2.2.7",
 		"vite": "^2.4.3",
 		"vite-plugin-components": "^0.13.2",
