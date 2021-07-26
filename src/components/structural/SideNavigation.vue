@@ -181,15 +181,16 @@ const debounceScroll = useDebounceFn(() => {
 		}
 	}
 
-	// Add automatic scrolling to side nav (useful when the side nav is so long it becomes scrollable)
-	const targetIsVisible = isVisible(currentStep.value, scrollTarget.value);
-	if (!targetIsVisible) {
-		if (typeof currentStep?.value?.scrollIntoView === 'function') {
-			nextTick(() => {
+	// Wait a tick so that currentStep is up to date
+	nextTick(() => {
+		// Add automatic scrolling to side nav (useful when the side nav is so long it becomes scrollable)
+		const targetIsVisible = isVisible(currentStep.value, scrollTarget.value);
+		if (!targetIsVisible) {
+			if (typeof currentStep?.value?.scrollIntoView === 'function') {
 				currentStep.value.scrollIntoView({ block: 'center', behavior: 'smooth' });
-			});
+			}
 		}
-	}
+	});
 }, 10);
 
 onMounted(() => {
