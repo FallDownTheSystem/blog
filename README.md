@@ -76,7 +76,7 @@ For development, the following [VS Code](https://code.visualstudio.com/) extensi
 ## Credits
 
 - [Yuxi (Evan) You](https://evanyou.me/) for [Vite](https://vitejs.dev/) and [Vitepress](https://github.com/vuejs/vitepress), some of the markdown-it plugins are based on those found in Vitepress.
-- [Anthony Fu](https://antfu.me/) for [Vitesse](https://github.com/antfu/vitesse) and [Slidev](https://sli.dev/), the template relies on a ton of the plugins found in Vitesse, and the whole idea for creating this site was from seeing Slidev.
+- [Anthony Fu](https://antfu.me/) for [Vitesse](https://github.com/antfu/vitesse) and [Slidev](https://sli.dev/), the template relies on a ton of the plugins found in Vitesse, and some of the features were inspired by Slidev.
 - Everyone else whose libraries are used in this project ❤
 
 ## Known issues
