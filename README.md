@@ -84,3 +84,4 @@ For development, the following [VS Code](https://code.visualstudio.com/) extensi
 - Can't use a later version of `@vueuse/head` than `0.5.1` until Vite SSG updates their dependency.
 - Shiki version is pinned to `0.9.3` since `0.9.4` broke Vue syntax highlighting. Not fixed in `0.9.5` yet.
 - group-hover animation styles aren't working in TailwindCSS version `2.2.7`. The code is there for some animations, but they won't work until the issue is fixed and the dependency updated.
+- Vite 2.3.7 upto 2.4.4 at least, breaks hot module reloading with Tailwind CSS, i.e. the new styles don't get applied when the file is changed.

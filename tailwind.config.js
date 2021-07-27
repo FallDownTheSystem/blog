@@ -33,10 +33,7 @@ const round = n =>
 		.replace(/\.0$/, '');
 
 module.exports = {
-	purge: {
-		content: ['./index.html', './vite.config.js', './src/**/*.{js,vue,md}'],
-		safelist: []
-	},
+	purge: ['./index.html', './vite.config.js', './src/**/*.{js,vue,md}'],
 	darkMode: 'class', // or 'media' or 'class'
 	mode: 'jit',
 	theme: {
@@ -111,13 +108,14 @@ module.exports = {
 								// Cascadia code is a fat font, so using a lower font weight
 								fontWeight: '350'
 							},
-							':not(.shiki)>code': {
+							':not(pre)>code': {
 								paddingTop: '0.125rem',
 								paddingBottom: '0.125rem',
 								paddingRight: '0.25rem',
 								paddingLeft: '0.25rem',
 								background: 'hsla(0, 0%, 0%, 0.075)',
-								borderRadius: '0.2rem'
+								borderRadius: '0.2rem',
+								overflowWrap: 'break-word'
 							},
 							'code::before': {
 								content: ''
@@ -336,7 +334,7 @@ module.exports = {
 							code: {
 								color: theme('colors.gray.100', defaultTheme.colors.gray[100])
 							},
-							':not(.shiki)>code': {
+							':not(pre)>code': {
 								background: 'hsla(210, 80%, 80%, 0.075)'
 							},
 							'a code': {

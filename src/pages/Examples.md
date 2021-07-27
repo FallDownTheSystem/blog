@@ -135,6 +135,17 @@ module.exports = {
 };
 ```
 
+You can also use indent to denote a code block, but you can't add the language for highlighting the syntax for it:
+
+    module.exports = {
+    	purge: [],
+    	theme: {
+    		extend: {}
+    	},
+    	variants: {},
+    	plugins: []
+    };
+
 Hopefully that looks good enough to you.
 
 ### What about nested lists?
@@ -325,18 +336,18 @@ Supported values are after that are:
 `more` (Hide's text behind a Read more button)
 `tag <html tag|vue component> <v-pre> <classes>`
 
-With the tag container, you can define which HTML tag or Vue component the container should be rendered as, then optionally v-pre to disable vue from interpolating anything inside the container and anything after that is added to the class list of the container.
+### Alert container
 
-For example:
+You can use the different alert types, `tip`, `note`, `info`, `warn`, and `danger` to create different colored containers.
 
 ```md
 ::: note "Hello"
-This is a note alert.
+This is a note alert. `And I'm inlined code inside the alert`
 :::
 ```
 
 ::: note "Hello"
-This is a note alert.
+This is a note alert. `And I'm inlined code inside the alert`
 :::
 
 ::: info
@@ -354,6 +365,41 @@ This is a warn alert.
 ::: danger "Hello"
 This is a danger alert.
 :::
+
+### Read more container
+
+The More component lets you hide text until a user clicks on a button to show it. This is useful if you want to include additional information in a tip or a note, but don't want to to be overly long, in case the reader isn't interested.
+
+::: more
+This is a simple more component
+:::
+
+Here's how you could use it in a note
+:::: note "This is a note"
+I want to explain something here, but it's kind of long.
+
+::: more
+But clearly you were interested, since you clicked read more.
+:::
+::::
+
+### Tag container
+
+With the `tag` container, you can define which HTML tag or Vue component the container should be rendered as, then optionally `v-pre` to disable vue from interpolating anything inside the container. Anything after that is added to the class list of the container.
+
+For example:
+
+```md
+::: tag p bg-red-500
+This is a paragraph with the class bg-red-500
+:::
+```
+
+::: tag p bg-red-500
+This is a paragraph with the class bg-red-500
+:::
+
+If you omit the tag after `::: tag`, it will default to `<div>`. But then you can't use `v-pre` or add classes to the container either.
 
 For nested containers add a colon for each level, e.g.
 
@@ -377,10 +423,6 @@ which prevents this from being interpolated {{frontmatter.title}}
 
 Try removing the `v-pre` and see what happens.
 
-Besides the few keywords, everything you write after `::: tag <tag>` is added to the container as a class. But you can also define which tag the container element should use.
-
-`::: tag span` for example will make the container a `span`, instead of the default `div`. These can also be Vue components.
-
 Of course we can also just wrap the content with HTML elements ourselves.
 
 ```html
@@ -388,23 +430,6 @@ Of course we can also just wrap the content with HTML elements ourselves.
 ```
 
 <div class="aside">This is wrapped in a div with the class 'aside'</div>
-
-## Read more
-
-The More component lets you hide text until a user clicks on a button to show it. This is useful if you want to include additional information in a tip or a note, but don't want to to be overly long, in case the reader isn't interested.
-
-::: more
-This is a simple more component
-:::
-
-Here's how you could use it in a note
-:::: note "This is a note"
-I want to explain something here, but it's kind of long.
-
-::: more
-But clearly you were interested, since you clicked read more.
-:::
-::::
 
 ## Slides
 
@@ -640,3 +665,7 @@ or with a markdown container
 Try switching the HTML tag to the custom container, and you'll see that nothing changes.
 
 This is all the examples. Hopefully they're enough to get you started!
+
+```
+
+```
