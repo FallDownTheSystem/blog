@@ -5,6 +5,15 @@
 @import './code.css';
 @import './markdown.css';
 
+/* Manually add tailwind animation keyframes, due to a bug */
+@keyframes ping {
+	75%,
+	100% {
+		transform: scale(2);
+		opacity: 0;
+	}
+}
+
 :root {
 	/* Remove this if you don't want the smooth scrolling effect */
 	scroll-behavior: smooth;
