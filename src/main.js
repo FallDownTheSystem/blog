@@ -1,9 +1,9 @@
+import 'vue-global-api';
 import { ViteSSG } from 'vite-ssg';
 import { setupLayouts } from 'virtual:generated-layouts';
 import generatedRoutes from 'virtual:generated-pages';
 import NProgress from 'nprogress';
 import App from './App.vue';
-import 'vue-global-api';
 import './styles/main.css';
 
 const routes = setupLayouts(generatedRoutes);

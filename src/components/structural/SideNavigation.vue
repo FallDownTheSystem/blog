@@ -130,7 +130,7 @@
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
-import { useElementVisibility, useTimeout, useDebounceFn } from '@vueuse/core';
+import { useDebounceFn } from '@vueuse/core';
 import sortBy from 'lodash/sortBy';
 import store from '../../store';
 

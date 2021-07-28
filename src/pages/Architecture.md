@@ -144,7 +144,7 @@ The entry point of our actual application is `src/App.vue`, which only has a `<r
 
 ## Definitions
 
-For better IDE support, our auto import component plugin generates a `components.d.ts` and additionally we've created a `src/shim.d.ts` so that the IDE understand to treat markdown (.md) files as if they were Vue files. These files are only for better IDE support, and are not necessary for development or building the application.
+For better IDE support, our auto import component plugin generates a `components.d.ts` and additionally we've created a `src/shims.d.ts` so that the IDE understand to treat markdown (.md) files as if they were Vue files. These files are only for better IDE support, and are not necessary for development or building the application.
 
 ## Folder structure
 

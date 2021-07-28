@@ -665,7 +665,3 @@ or with a markdown container
 Try switching the HTML tag to the custom container, and you'll see that nothing changes.
 
 This is all the examples. Hopefully they're enough to get you started!
-
-```
-
-```
