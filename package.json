@@ -19,7 +19,7 @@
 		"workbox-window": "^6.1.5"
 	},
 	"devDependencies": {
-		"@iconify/json": "^1.1.381",
+		"@iconify/json": "^1.1.382",
 		"@tailwindcss/forms": "^0.3.3",
 		"@tailwindcss/typography": "^0.4.1",
 		"@vitejs/plugin-vue": "^1.3.0",
