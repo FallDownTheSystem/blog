@@ -42,7 +42,7 @@
 		"prettier": "^2.3.2",
 		"shiki": "0.9.3",
 		"tailwindcss": "^2.2.7",
-		"vite": "^2.4.4",
+		"vite": "^2.5.0",
 		"vite-plugin-components": "^0.13.2",
 		"vite-plugin-icons": "^0.6.5",
 		"vite-plugin-md": "^0.10.0",
