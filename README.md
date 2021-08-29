@@ -78,8 +78,3 @@ For development, the following [VS Code](https://code.visualstudio.com/) extensi
 - [Yuxi (Evan) You](https://evanyou.me/) for [Vite](https://vitejs.dev/) and [Vitepress](https://github.com/vuejs/vitepress), some of the markdown-it plugins are based on those found in Vitepress.
 - [Anthony Fu](https://antfu.me/) for [Vitesse](https://github.com/antfu/vitesse) and [Slidev](https://sli.dev/), the template relies on a ton of the plugins found in Vitesse, and some of the features were inspired by Slidev.
 - Everyone else whose libraries are used in this project ❤
-
-## Known issues
-
-- Shiki version is pinned to `0.9.3` since `0.9.4` broke Vue syntax highlighting. Not fixed in `0.9.5` yet.
-- group-hover animation styles aren't working in TailwindCSS version `2.2.7`. The code is there for some animations, but they won't work until the issue is fixed and the dependency updated.

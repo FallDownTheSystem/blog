@@ -173,7 +173,7 @@ const isVisible = function (ele, container) {
 
 const debounceScroll = useDebounceFn(() => {
 	for (const heading of headingRef.value) {
-		// Set as current when the position is a little above the middle of the screen
+		// Set as current when the position is slightly above the middle of the screen
 		if (heading.pos < window.scrollY + window.innerHeight / 2.1) {
 			current.value = heading.hash;
 		} else {
@@ -191,9 +191,11 @@ const debounceScroll = useDebounceFn(() => {
 			}
 		}
 	});
-}, 10);
+}, 100);
 
 onMounted(() => {
+	// The scrolling has to be debounced
+	// otherwise it will scroll the side navigation when the main content is scrolling, causing the actual scroll to cancel.
 	document.addEventListener('scroll', debounceScroll);
 });
 </script>
