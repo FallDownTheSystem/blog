@@ -24,7 +24,7 @@
 		"@tailwindcss/typography": "^0.4.1",
 		"@vitejs/plugin-vue": "^1.6.0",
 		"@vue/compiler-sfc": "^3.2.6",
-		"@vue/server-renderer": "^3.2.6",
+		"@vue/server-renderer": "^3.2.19",
 		"autoprefixer": "^10.3.3",
 		"chalk": "^4.1.2",
 		"critters": "^0.0.10",
