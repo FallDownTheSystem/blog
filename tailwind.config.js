@@ -1,27 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const plugin = require('tailwindcss/plugin');
-// Loading all the tailwind colors, rather than just the defaults
 let colors = require('tailwindcss/colors');
-
-// Depricated but still included. Deleted to get rid of the warning from Tailwind.
-delete colors.lightBlue;
-
-// Overriding the default gray with custom colors
-colors = {
-	...colors,
-	gray: {
-		50: 'hsl(210, 28%, 98%)',
-		100: 'hsl(220, 22%, 96%)',
-		200: 'hsl(220, 17%, 91%)',
-		300: 'hsl(216, 15%, 84%)',
-		400: 'hsl(218, 11%, 65%)',
-		500: 'hsl(220, 8%, 46%)',
-		600: 'hsl(215, 9%, 34%)',
-		700: 'hsl(217, 11%, 25%)',
-		800: 'hsl(215, 11%, 17%)',
-		900: 'hsl(218, 12%, 11%)'
-	}
-};
 
 // Methods taken from tailwind typography plugin
 const rem = px => `${round(px / 16)}rem`;
@@ -33,13 +12,22 @@ const round = n =>
 		.replace(/\.0$/, '');
 
 module.exports = {
-	purge: ['./index.html', './vite.config.js', './src/**/*.{js,vue,md}'],
-	darkMode: 'class', // or 'media' or 'class'
-	mode: 'jit',
+	content: ['./index.html', './vite.config.js', './src/**/*.{js,vue,md}'],
 	theme: {
 		extend: {
 			colors: {
-				...colors,
+				gray: {
+					50: 'hsl(210, 28%, 98%)',
+					100: 'hsl(220, 22%, 96%)',
+					200: 'hsl(220, 17%, 91%)',
+					300: 'hsl(216, 15%, 84%)',
+					400: 'hsl(218, 11%, 65%)',
+					500: 'hsl(220, 8%, 46%)',
+					600: 'hsl(215, 9%, 34%)',
+					700: 'hsl(217, 11%, 25%)',
+					800: 'hsl(215, 11%, 17%)',
+					900: 'hsl(218, 12%, 11%)'
+				},
 				primary: colors.purple,
 				// Background color of syntax highlighted code blocks
 				// Set these to the color of the theme you use, or a custom one
@@ -70,14 +58,14 @@ module.exports = {
 						{
 							maxWidth: 'none',
 							a: {
-								color: theme('colors.primary.500', defaultTheme.colors.indigo['500']),
+								color: theme('colors.primary.500', colors.indigo[500]),
 								textDecoration: 'none',
 								fontWeight: '500',
 								'&:hover': {
 									textDecoration: 'underline'
 								},
 								strong: {
-									color: theme('colors.primary.500', defaultTheme.colors.indigo['500'])
+									color: theme('colors.primary.500', colors.indigo['500'])
 								}
 							},
 							sub: {
@@ -124,10 +112,10 @@ module.exports = {
 								content: ''
 							},
 							'a code': {
-								color: theme('colors.primary.500', defaultTheme.colors.indigo[500])
+								color: theme('colors.primary.500', colors.indigo[500])
 							},
 							pre: {
-								backgroundColor: theme('colors.code', defaultTheme.colors.gray[200])
+								backgroundColor: theme('colors.code', colors.gray[200])
 							},
 							'pre code': {
 								// Cascadia code is a fat font, so using a lower font weight
@@ -280,24 +268,24 @@ module.exports = {
 				dark: {
 					css: [
 						{
-							color: theme('colors.gray.200', defaultTheme.colors.gray[200]),
+							color: theme('colors.gray.200', colors.gray[200]),
 							'[class~="lead"]': {
-								color: theme('colors.gray.400', defaultTheme.colors.gray[400])
+								color: theme('colors.gray.400', colors.gray[400])
 							},
 							a: {
-								color: theme('colors.primary.500', defaultTheme.colors.indigo[500]),
+								color: theme('colors.primary.500', colors.indigo[500]),
 								strong: {
-									color: theme('colors.primary.500', defaultTheme.colors.indigo[500])
+									color: theme('colors.primary.500', colors.indigo[500])
 								}
 							},
 							strong: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100])
+								color: theme('colors.gray.100', colors.gray[100])
 							},
 							sub: {
-								color: theme('colors.gray.200', defaultTheme.colors.gray[200])
+								color: theme('colors.gray.200', colors.gray[200])
 							},
 							sup: {
-								color: theme('colors.gray.200', defaultTheme.colors.gray[200])
+								color: theme('colors.gray.200', colors.gray[200])
 							},
 							'ol > li::before': {
 								color: 'hsla(0, 0%, 100%, 0.4)'
@@ -306,50 +294,50 @@ module.exports = {
 								backgroundColor: 'hsla(0, 0%, 100%, 0.4)'
 							},
 							hr: {
-								borderColor: theme('colors.gray.800', defaultTheme.colors.gray[800])
+								borderColor: theme('colors.gray.800', colors.gray[800])
 							},
 							blockquote: {
-								color: theme('colors.gray.200', defaultTheme.colors.gray[200]),
-								borderLeftColor: theme('colors.gray.700', defaultTheme.colors.gray[700])
+								color: theme('colors.gray.200', colors.gray[200]),
+								borderLeftColor: theme('colors.gray.700', colors.gray[700])
 							},
 							h1: {
-								color: theme('colors.white', defaultTheme.colors.white),
+								color: theme('colors.white', colors.white),
 								fontWeight: '600'
 							},
 							h2: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
+								color: theme('colors.gray.100', colors.gray[100]),
 								fontWeight: '600'
 							},
 							h3: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
+								color: theme('colors.gray.100', colors.gray[100]),
 								fontWeight: '600'
 							},
 							h4: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
+								color: theme('colors.gray.100', colors.gray[100]),
 								fontWeight: '600'
 							},
 							'figure figcaption': {
-								color: theme('colors.gray.400', defaultTheme.colors.gray[400])
+								color: theme('colors.gray.400', colors.gray[400])
 							},
 							code: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100])
+								color: theme('colors.gray.100', colors.gray[100])
 							},
 							':not(pre)>code': {
 								background: 'hsla(210, 80%, 80%, 0.075)'
 							},
 							'a code': {
-								color: theme('colors.primary.500', defaultTheme.colors.indigo[500])
+								color: theme('colors.primary.500', colors.indigo[500])
 							},
 							pre: {
-								color: theme('colors.gray.200', defaultTheme.colors.gray[200]),
-								backgroundColor: theme('colors.code-dark', defaultTheme.colors.gray[800])
+								color: theme('colors.gray.200', colors.gray[200]),
+								backgroundColor: theme('colors.code-dark', colors.gray[800])
 							},
 							thead: {
-								color: theme('colors.gray.100', defaultTheme.colors.gray[100]),
-								borderBottomColor: theme('colors.gray.700', defaultTheme.colors.gray[700])
+								color: theme('colors.gray.100', colors.gray[100]),
+								borderBottomColor: theme('colors.gray.700', colors.gray[700])
 							},
 							'tbody tr': {
-								borderBottomColor: theme('colors.gray.800', defaultTheme.colors.gray[800])
+								borderBottomColor: theme('colors.gray.800', colors.gray[800])
 							}
 						}
 					]

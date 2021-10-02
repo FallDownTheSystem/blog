@@ -130,7 +130,7 @@ Besides being the entry point for the Vue application, the html file does a few 
 
 ### src/main.js
 
-In the `src/main.js` file, we import [Vue Global API](https://github.com/antfu/vue-global-api), which exposes all the Vue Composition API methods globally in the application, so we don't need to import them explicitly every time in every component where we need them.
+In the `src/main.js` file, we use [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import), which exposes all the Vue Composition API methods globally in the application, so we don't need to import them explicitly every time in every component where we need them.
 
 We also import our generated routes and wrap them in the layouts we've defined.
 

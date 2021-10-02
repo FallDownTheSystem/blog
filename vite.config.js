@@ -1,7 +1,8 @@
 import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
 import vue from '@vitejs/plugin-vue';
-import components from 'vite-plugin-components';
+import components from 'unplugin-vue-components/vite'
+import { HeadlessUiResolver } from 'unplugin-vue-components/resolvers'
 import icons from 'unplugin-icons/vite';
 import ViteIconsResolver from 'unplugin-icons/resolver';
 import pages from 'vite-plugin-pages';
@@ -18,6 +19,7 @@ import { lineNumberPlugin } from './build-time/markdown/lineNumbers';
 import { containerPlugin } from './build-time/markdown/containers';
 import { preWrapperPlugin } from './build-time/markdown/preWrapper';
 import metaResolver from './build-time/frontmatter';
+import AutoImport from 'unplugin-auto-import/vite'
 
 export default async ({ command, mode }) => {
 	const shikiHighlighter = await shiki.getHighlighter({
@@ -46,6 +48,14 @@ export default async ({ command, mode }) => {
 			fs: {
 				strict: false
 			}
+		},
+		optimizeDeps: {
+			include: [
+				'vue',
+				'vue-router',
+				'@vueuse/core',
+				'@vueuse/head',
+			],
 		},
 		plugins: [
 			vue({
@@ -105,14 +115,37 @@ export default async ({ command, mode }) => {
 				}
 			}),
 			layouts(),
-			components({
-				globalComponentsDeclaration: true,
-				extensions: ['vue', 'md'],
-				customLoaderMatcher: id => id.endsWith('.md'),
-				customComponentResolvers: ViteIconsResolver(),
-				dirs: ['src/components']
+			AutoImport({
+				// targets to transform
+				include: [
+					/\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+					/\.vue$/, /\.vue\?vue/, // .vue
+					/\.md$/, // .md
+				],
+				// global imports to register
+				imports: [
+					'vue',
+				],
+				dts: 'src/auto-imports.d.ts',
 			}),
-			icons(),
+			components({
+				extensions: ['vue', 'md'],
+				importPathTransform: (path) => {
+					if (path.includes('src/components')) {
+						return path.replace(/.*src\/components/, '@/components');
+					}
+					return path;
+				},
+				include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+				resolvers: [
+					HeadlessUiResolver(),
+					ViteIconsResolver()
+				],
+				dts: 'src/components.d.ts',
+			}),
+			icons({
+				autoInstall: true
+			}),
 			markdown({
 				wrapperClasses: 'post__layout !mx-auto prose dark:prose-dark',
 				wrapperComponent: 'Markdown',

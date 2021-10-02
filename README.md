@@ -16,7 +16,7 @@ An opinionated blog starter template - statically generated with Vite and Vue 3.
 
 - 📑 Automatic routes based on [pages](https://github.com/hannoeru/vite-plugin-pages) and [layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
 
-- 📦 Auto import [components](https://github.com/antfu/vite-plugin-components) and [icons](https://github.com/antfu/vite-plugin-icons)
+- 📦 Auto import [components](https://github.com/antfu/unplugin-vue-components) and [icons](https://github.com/antfu/unplugin-icons)
 
 - 📃 Use [markdown](https://github.com/antfu/vite-plugin-md) and Vue mixed together
 
@@ -71,7 +71,11 @@ For development, the following [VS Code](https://code.visualstudio.com/) extensi
 - Add Mermaid Diagrams support
 - Add vite-plugin-remote-assets
 - Better animation support
-  - useMotion and useGestures
+  - Motion one
+- Image optimization
+- CLI to generate a new site easier
+  - UI for creating a configuration
+    - Names, titles, descriptions, colors, etc
 
 ## Credits
 
