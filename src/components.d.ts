@@ -4,9 +4,9 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Alert: typeof import('C:/Users/Juugo/Desktop/blog/src/components/custom/Alert.vue')['default']
-    ArticleNavigation: typeof import('C:/Users/Juugo/Desktop/blog/src/components/structural/ArticleNavigation.vue')['default']
-    ComponentBasics: typeof import('C:/Users/Juugo/Desktop/blog/src/components/examples/ComponentBasics.vue')['default']
+    Alert: typeof import('./components/custom/Alert.vue')['default']
+    ArticleNavigation: typeof import('./components/structural/ArticleNavigation.vue')['default']
+    ComponentBasics: typeof import('./components/examples/ComponentBasics.vue')['default']
     'IHeroiconsOutline:checkCircle': typeof import('~icons/heroicons-outline/check-circle')['default']
     'IHeroiconsOutline:code': typeof import('~icons/heroicons-outline/code')['default']
     'IHeroiconsOutline:exclamationCircle': typeof import('~icons/heroicons-outline/exclamation-circle')['default']
@@ -19,17 +19,17 @@ declare module 'vue' {
     'IHeroiconsSolid:chevronLeft': typeof import('~icons/heroicons-solid/chevron-left')['default']
     'IHeroiconsSolid:chevronRight': typeof import('~icons/heroicons-solid/chevron-right')['default']
     'IMdi:github': typeof import('~icons/mdi/github')['default']
-    LeftArrow: typeof import('C:/Users/Juugo/Desktop/blog/src/components/icons/LeftArrow.vue')['default']
-    Markdown: typeof import('C:/Users/Juugo/Desktop/blog/src/components/structural/Markdown.vue')['default']
-    More: typeof import('C:/Users/Juugo/Desktop/blog/src/components/custom/More.vue')['default']
-    NewsArticle: typeof import('C:/Users/Juugo/Desktop/blog/src/components/examples/NewsArticle.vue')['default']
-    PopoverNavigation: typeof import('C:/Users/Juugo/Desktop/blog/src/components/structural/PopoverNavigation.vue')['default']
-    PostList: typeof import('C:/Users/Juugo/Desktop/blog/src/components/structural/PostList.vue')['default']
-    RightArrow: typeof import('C:/Users/Juugo/Desktop/blog/src/components/icons/RightArrow.vue')['default']
-    SideNavigation: typeof import('C:/Users/Juugo/Desktop/blog/src/components/structural/SideNavigation.vue')['default']
-    SiteHeader: typeof import('C:/Users/Juugo/Desktop/blog/src/components/structural/SiteHeader.vue')['default']
-    Slides: typeof import('C:/Users/Juugo/Desktop/blog/src/components/custom/Slides.vue')['default']
-    Title: typeof import('C:/Users/Juugo/Desktop/blog/src/components/custom/Title.vue')['default']
+    LeftArrow: typeof import('./components/icons/LeftArrow.vue')['default']
+    Markdown: typeof import('./components/structural/Markdown.vue')['default']
+    More: typeof import('./components/custom/More.vue')['default']
+    NewsArticle: typeof import('./components/examples/NewsArticle.vue')['default']
+    PopoverNavigation: typeof import('./components/structural/PopoverNavigation.vue')['default']
+    PostList: typeof import('./components/structural/PostList.vue')['default']
+    RightArrow: typeof import('./components/icons/RightArrow.vue')['default']
+    SideNavigation: typeof import('./components/structural/SideNavigation.vue')['default']
+    SiteHeader: typeof import('./components/structural/SiteHeader.vue')['default']
+    Slides: typeof import('./components/custom/Slides.vue')['default']
+    Title: typeof import('./components/custom/Title.vue')['default']
   }
 }
 

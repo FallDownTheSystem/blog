@@ -13,6 +13,7 @@ const round = n =>
 
 module.exports = {
 	content: ['./index.html', './vite.config.js', './src/**/*.{js,vue,md}'],
+	darkMode: 'class',
 	theme: {
 		extend: {
 			colors: {
